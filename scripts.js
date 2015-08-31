@@ -29,7 +29,6 @@ var carousel = (function(){
       }
       $_pagination.on('click', 'li', function (event) {
         // http://stackoverflow.com/questions/5545283/get-index-of-clicked-element-in-collection-with-jquery
-        // console.log($(this).index());
         moveTo($(this).index());
       });
       $_container.append($_pagination);
@@ -37,20 +36,20 @@ var carousel = (function(){
     if(options['navigation']) {
       $_container.append($_navigation);
       $_container.children('.prev').on('click', function () {
-        moveTo(_index-1);
+        moveTo((_index+$items.length-1) % $items.length);
       });
       $_container.children('.next').on('click', function () {
-        moveTo(_index+1);        
+        moveTo((_index+1) % $items.length);
       });
     }
     
-    var moveTo = function (index) {
+    function moveTo (index) {
       if (_index == index) return;
       if (options['pagination']) {
         $('li', $_pagination).eq(_index).removeClass('on');
         $('li', $_pagination).eq(index).addClass('on');
       }
-      if (options['navigation']) {
+      if (options['navigation'] && !options['rewind']) {
         if (index <= 0) {
           $('.prev', $_container).hide();
         } else {
@@ -64,7 +63,7 @@ var carousel = (function(){
       }
       $_container.css('margin-left', -index*itemWidth);
       _index = index;
-    };
+    }
     moveTo(0);
   }
 })();
@@ -73,12 +72,14 @@ carousel({
   'listSelector' : 'ul',
   'itemSelector' : 'li',
   'pagination'   : true,
-  'navigation'   : true
+  'navigation'   : true,
+  'rewind'       : true
 });
 
 
 /* todo
 * user.css should overwrite default.css
 * pagination/navigation Hide : pagination/navigation appears only on hover
+* stop on hover
 * loop
 */
