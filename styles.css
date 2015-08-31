@@ -1,0 +1,85 @@
+/* default.css */
+.carousel-list {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* http://stackoverflow.com/questions/9668967/overflowing-line-of-divs-in-div-with-scroll-not-new-line */
+  white-space: nowrap;
+  position: relative;
+}
+.carousel {
+  transition: margin-left 1s;
+}
+.carousel .carousel-item {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  transition: margin-left 1s;
+}
+.carousel .carousel-pagination {
+  padding: 0;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  left: 0; /* ie8 hack; if not, element 
+disappears */
+}
+.carousel .carousel-pagination li {
+  display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:10px;
+  margin:0 10px;
+  background-color: #7f7f7f; /* fallback for ie8 
+*/
+  background-color: rgba(255,255,255,0.5);
+  transition: background-color 1s;
+}
+.carousel .carousel-pagination li:hover, .carousel .carousel-pagination li.on {
+  background-color:white;
+}
+.carousel .prev,.carousel .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7f7f7f; /* fallback for ie8 */
+  color: rgba(255,255,255,0.5);
+}
+.carousel .prev:hover,.carousel .next:hover {
+  color: white;
+}
+.carousel .prev {
+  left: 0.5em;
+}
+.carousel .next {
+  right: 0.5em;
+}
+.carousel .prev::before {
+  content:'<'
+}
+.carousel .next::before {
+  content:'>'
+}
+.carousel .prev:before {
+  content:'<'
+}
+.carousel .next:before {
+  content:'>'
+}
+
+/* user.css */
+/* todo: user.css should overwrite default.css */
+ul.slide {
+  width: 300px;
+  height: 300px;
+}
+.slide li {
+  background-color: orange;
+}
+body {
+  background-color: #333;
+}
+ul {
+  list-style: none;
+}
